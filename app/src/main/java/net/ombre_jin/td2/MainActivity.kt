@@ -3,8 +3,6 @@ package net.ombre_jin.td2
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.ImageView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import layout.Task
 import net.ombre_jin.td2.TaskViewModel.tasks
@@ -25,7 +23,6 @@ class MainActivity : AppCompatActivity() {
 
         val button = findViewById<FloatingActionButton>(R.id.floating_action_button)
         button.setOnClickListener {
-            //intent.putExtra("newTask", Task(newTask.id, newTask.title, newTask.description))
             startActivity(taskFormIntent)
         }
 

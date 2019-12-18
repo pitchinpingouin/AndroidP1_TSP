@@ -4,8 +4,6 @@ package layout
 import android.os.Parcel
 import android.os.Parcelable
 import com.squareup.moshi.Json
-import kotlinx.android.parcel.Parceler
-import kotlinx.android.parcel.Parcelize
 
 data class Task(
     @field:Json(name = "id")

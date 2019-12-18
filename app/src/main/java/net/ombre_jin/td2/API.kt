@@ -29,6 +29,7 @@ object API {
         .addConverterFactory(MoshiConverterFactory.create(moshi))
         .build()
 
-    val userService: UserService by lazy { retrofit.create(UserService::class.java) }
+    val userService: UserService by lazy { retrofit.create(UserService::class.java)}
+    val taskService: TaskService by lazy { retrofit.create(TaskService::class.java)}
 }
 
