@@ -14,9 +14,16 @@
 
     <TextView
         android:id="@+id/task_description"
-        android:layout_width="246dp"
+        android:layout_width="163dp"
         android:layout_height="58dp"
         android:textStyle="italic" />
+
+
+    <Button
+        android:id="@+id/task_edit"
+        android:layout_width="55dp"
+        android:layout_height="wrap_content"
+        android:text="Edit" />
 
     <Button
         android:id="@+id/task_delete"

@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.ImageView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import layout.Task
+import net.ombre_jin.td2.TaskViewModel.tasks
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,10 +18,14 @@ class MainActivity : AppCompatActivity() {
 
         val newTask = intent.getParcelableExtra<Task>("newTask")
         if(newTask != null)
-            TaskViewModel.tasks.add(newTask)
+            if(newTask.id >= tasks.size){
+                tasks.add(newTask)
+            }
+
 
         val button = findViewById<FloatingActionButton>(R.id.floating_action_button)
         button.setOnClickListener {
+            //intent.putExtra("newTask", Task(newTask.id, newTask.title, newTask.description))
             startActivity(taskFormIntent)
         }
 
