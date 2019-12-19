@@ -5,11 +5,14 @@ import android.os.Parcelable
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
 import layout.Task
 import net.ombre_jin.td2.TaskViewModel.tasks
 
 class TaskFormActivity : AppCompatActivity() {
 
+    private val coroutineScope = MainScope()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +41,11 @@ class TaskFormActivity : AppCompatActivity() {
                     }
                 }
                 else{
-                    createActivityIntent.putExtra("newTask", Task(tasks.size, title.text.toString(), description.text.toString()))
+                    //createActivityIntent.putExtra("newTask", Task(tasks.size, title.text.toString(), description.text.toString()))
+                    //tasks.add( Task(tasks.size, title.text.toString(), description.text.toString()))
+                    coroutineScope.launch {
+                        API.taskService.createTask(Task(tasks.size, title.text.toString(), description.text.toString()))
+                    }
                 }
             }
             startActivity(createActivityIntent)

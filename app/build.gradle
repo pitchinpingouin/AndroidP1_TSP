@@ -40,4 +40,5 @@ dependencies {
     implementation "com.squareup.moshi:moshi-kotlin:1.8.0"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0"
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.1.0'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
 }

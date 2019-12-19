@@ -11,22 +11,22 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_main)
+
         val taskFormIntent = Intent(this, TaskFormActivity::class.java)
 
+        /*
         val newTask = intent.getParcelableExtra<Task>("newTask")
+
         if(newTask != null)
             if(newTask.id >= tasks.size){
                 tasks.add(newTask)
             }
-
-
+        */
         val button = findViewById<FloatingActionButton>(R.id.floating_action_button)
         button.setOnClickListener {
             startActivity(taskFormIntent)
         }
-
     }
-
-
 }

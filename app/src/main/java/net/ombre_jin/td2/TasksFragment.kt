@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.tasks_fragment.view.*
+import androidx.lifecycle.ViewModelProviders
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
@@ -22,6 +23,7 @@ class TasksFragment : Fragment() {
     private val tasksRepository = TaskRepository()
     private val tasks = mutableListOf<Task>()
     private val taskAdapter = TasksAdapter(tasks)
+    private val taskViewModel by lazy { ViewModelProviders.of(this).get(TasksViewModel::class.java)}
 
 
     override fun onCreateView(
@@ -33,7 +35,7 @@ class TasksFragment : Fragment() {
         val adapter = taskAdapter
         val view = inflater.inflate(R.layout.tasks_fragment, container, false)
         view.tasks_recycler_view.adapter = adapter
-        view.tasks_recycler_view.layoutManager = LinearLayoutManager(context) as RecyclerView.LayoutManager?
+        view.tasks_recycler_view.layoutManager = LinearLayoutManager(context)
         return view
     }
 
@@ -43,7 +45,7 @@ class TasksFragment : Fragment() {
             if( it != null){
                 tasks.clear()
                 tasks.addAll(it)
-                Log.e("task ", it.toString())
+                Log.e("task", it.toString())
                 taskAdapter.notifyDataSetChanged()
             }
         })
@@ -51,9 +53,10 @@ class TasksFragment : Fragment() {
     }
 
     override fun onResume() {
-        coroutineScope.launch {
+        /*coroutineScope.launch {
             API.userService.getInfo()
-        }
+        }*/
+        taskViewModel.loadTasks(this)
         super.onResume()
     }
 

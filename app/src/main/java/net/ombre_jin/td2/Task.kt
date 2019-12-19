@@ -11,7 +11,7 @@ data class Task(
     @field:Json(name = "title")
     var title: String,
     @field:Json(name = "description")
-    var description: String = "") : Parcelable
+    var description: String? = "") : Parcelable
 {
      constructor(parcel: Parcel
      ) : this(
