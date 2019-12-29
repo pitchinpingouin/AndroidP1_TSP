@@ -22,12 +22,15 @@ class TasksAdapter(private val tasks: MutableList<Task>) : RecyclerView.Adapter<
     private fun onDeleteClickListener(task : Task) {
         //tasks.remove(task)
         //notifyDataSetChanged()
-        coroutineScope.launch {
-            API.taskService.deleteTask(task.id)
+        /*coroutineScope.launch {
+            API.taskService.deleteTask(task.id.toString())
             tasks.remove(task)
             notifyDataSetChanged()
-        }
+        }*/
 
+        coroutineScope.launch {
+            API.taskService.deleteTask(task.id.toString())
+        }
     }
 
     private fun onEditClickListener(task : Task) {

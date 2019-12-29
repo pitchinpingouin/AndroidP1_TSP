@@ -10,7 +10,7 @@ interface TaskService {
     suspend fun getTasks(): Response<List<Task>>
 
     @DELETE("tasks/{id}")
-    suspend fun deleteTask(@Path("id") id: Int): Response<Int>
+    suspend fun deleteTask(@Path("id") id: String): Response<String>
 
     @POST("tasks")
     suspend fun createTask(@Body task: Task): Response<Task>

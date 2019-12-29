@@ -41,22 +41,26 @@ class TasksFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         // subscribe the fragment to task update
-        tasksRepository.getTasks().observe(this, Observer{
+
+        /*tasksRepository.getTasks().observe(this, Observer{
             if( it != null){
                 tasks.clear()
                 tasks.addAll(it)
                 Log.e("task", it.toString())
                 taskAdapter.notifyDataSetChanged()
             }
-        })
+        })*/
+
         super.onCreate(savedInstanceState)
     }
 
     override fun onResume() {
-        /*coroutineScope.launch {
+        coroutineScope.launch {
             API.userService.getInfo()
-        }*/
-        taskViewModel.loadTasks(this)
+        }
+
+        //taskViewModel.loadTasks(this)
+
         super.onResume()
     }
 

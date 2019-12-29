@@ -43,6 +43,7 @@ class TaskFormActivity : AppCompatActivity() {
                 else{
                     //createActivityIntent.putExtra("newTask", Task(tasks.size, title.text.toString(), description.text.toString()))
                     //tasks.add( Task(tasks.size, title.text.toString(), description.text.toString()))
+
                     coroutineScope.launch {
                         API.taskService.createTask(Task(tasks.size, title.text.toString(), description.text.toString()))
                     }
