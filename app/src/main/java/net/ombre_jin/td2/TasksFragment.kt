@@ -46,10 +46,10 @@ class TasksFragment : Fragment() {
             if( it != null){
                 tasks.clear()
                 tasks.addAll(it)
-                Log.e("task", it.toString())
                 taskAdapter.notifyDataSetChanged()
             }
         })*/
+
 
         super.onCreate(savedInstanceState)
     }

@@ -14,17 +14,13 @@ class TaskRepository {
 
     fun getTasks(): LiveData<List<Task>?> {
         val tasks = MutableLiveData<List<Task>?>()
-        coroutineScope.launch { tasks.postValue( loadTasks()) }
+        coroutineScope.launch { tasks.postValue(loadTasks()) }
         return tasks
     }
 
     private suspend fun loadTasks(): List<Task>? {
-        val taskReponse = tasksService.getTasks()
-        Log.e(
-            "loadTask",
-            taskReponse.toString() +
-                    taskReponse.body()
-        )
-        return if(taskReponse.isSuccessful) taskReponse.body() else null
+        val tasksResponse = tasksService.getTasks()
+        Log.e("loadTasks", tasksResponse.toString())
+        return if (tasksResponse.isSuccessful) tasksResponse.body() else null
     }
 }
