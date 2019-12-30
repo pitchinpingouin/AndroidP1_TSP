@@ -9,48 +9,39 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_task.view.*
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
+import layout.Association
 import layout.Word
 
-class TasksAdapter(private val tasks: MutableList<Word>) : RecyclerView.Adapter<TaskViewHolder>()
+class TasksAdapter(private val associations: MutableList<Association>) : RecyclerView.Adapter<TaskViewHolder>()
 {
     lateinit var context : Context
-    private val coroutineScope = MainScope()
 
     override fun getItemCount(): Int {
-        return tasks.size
+        return associations.size
     }
-    private fun onDeleteClickListener(word : Word) {
-        //tasks.remove(task)
-        //notifyDataSetChanged()
-        /*coroutineScope.launch {
-            API.taskService.deleteTask(task.id.toString())
-            tasks.remove(task)
-            notifyDataSetChanged()
-        }*/
-
-        //coroutineScope.launch {
-        //    API.taskService.deleteTask(word.id.toString())
-        //}
+    private fun onDeleteClickListener(association: Association) {
+        associations.remove(association)
+        notifyDataSetChanged()
     }
 
-    private fun onEditClickListener(word : Word) {
-/*
-        val createActivityIntent : Intent = Intent(context, TaskFormActivity::class.java)
+    private fun onEditClickListener(association : Association) {
 
-        createActivityIntent.putExtra("taskToEdit", Task(task.id, task.title, task.description))
+        val createActivityIntent = Intent(context, AssociationFormActivity::class.java)
+        createActivityIntent.putExtra("associationToEdit", Association(association.id, association.gender, association.word1, association.word2, association.description))
 
         startActivity(context, createActivityIntent, null)
         notifyDataSetChanged()
-
- */
     }
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
-        holder.bind(tasks[position])
+        holder.bind(associations[position])
+
         holder.itemView.task_delete.setOnClickListener{
-            onDeleteClickListener(tasks[position])
+            onDeleteClickListener(associations[position])
         }
-        holder.itemView.task_edit.setOnClickListener { onEditClickListener(tasks[position])}
+        holder.itemView.task_edit.setOnClickListener {
+            onEditClickListener(associations[position])
+        }
 
     }
 

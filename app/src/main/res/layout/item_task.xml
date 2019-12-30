@@ -7,13 +7,13 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/task_title"
+        android:id="@+id/association_gender"
         android:layout_width="99dp"
         android:layout_height="31dp"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/task_description"
+        android:id="@+id/association_words"
         android:layout_width="163dp"
         android:layout_height="58dp"
         android:textStyle="italic" />

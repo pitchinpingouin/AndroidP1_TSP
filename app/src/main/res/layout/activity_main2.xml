@@ -32,10 +32,11 @@
         android:id="@+id/word1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginBottom="56dp"
+        android:layout_marginStart="28dp"
         android:background="#52639CFF"
         android:text="word1"
+        android:textAlignment="textStart"
+        android:textSize="50sp"
         app:layout_constraintBottom_toTopOf="@+id/word2"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -56,32 +57,36 @@
         android:id="@+id/lock_word1"
         android:layout_width="47dp"
         android:layout_height="38dp"
-        android:layout_marginStart="85dp"
+        android:layout_marginStart="20dp"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/word1"
         app:layout_constraintStart_toEndOf="@+id/word1"
         app:layout_constraintTop_toTopOf="@+id/word1"
+        app:layout_constraintVertical_bias="0.62"
         app:srcCompat="@android:drawable/ic_lock_lock" />
 
     <ImageView
         android:id="@+id/lock_word2"
         android:layout_width="47dp"
         android:layout_height="38dp"
-        android:layout_marginEnd="80dp"
+        android:layout_marginEnd="20dp"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/word2"
         app:layout_constraintEnd_toStartOf="@+id/word2"
         app:layout_constraintTop_toTopOf="@+id/word2"
+        app:layout_constraintVertical_bias="0.724"
         app:srcCompat="@android:drawable/ic_lock_lock" />
 
     <TextView
         android:id="@+id/word2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="68dp"
-        android:layout_marginBottom="404dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="368dp"
         android:background="#88E552FF"
         android:text="word2"
+        android:textAlignment="viewEnd"
+        android:textSize="50sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -89,13 +94,16 @@
         android:id="@+id/Gender"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="184dp"
+        android:layout_marginStart="124dp"
         android:background="#65FF8989"
         android:text="Gender"
+        android:textAlignment="center"
+        android:textSize="50sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/word1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/header_fragment" />
+        app:layout_constraintTop_toTopOf="@+id/header_fragment"
+        app:layout_constraintVertical_bias="0.918" />
 
     <Button
         android:id="@+id/see_list_button"

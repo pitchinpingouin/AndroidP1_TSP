@@ -9,14 +9,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.tasks_fragment.view.*
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.cancel
-import kotlinx.coroutines.launch
-import layout.Word
+import layout.Association
 
 class TasksFragment : Fragment() {
 
     private val coroutineScope = MainScope()
-    private val association = mutableListOf<Word>()
-    private val taskAdapter = TasksAdapter(association)
+    private val associations = mutableListOf<Association>()
+    private val taskAdapter = TasksAdapter(associations)
 
 
     override fun onCreateView(

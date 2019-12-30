@@ -1,14 +1,15 @@
 package net.ombre_jin.td2
 
+import android.text.Editable
 import android.view.View
-import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.item_task.view.*
-import layout.Word
+import kotlinx.android.synthetic.main.activity_association_form.view.*
+import layout.Association
 
 class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    fun bind(word: Word) {
-        itemView.task_title.text = word.word
-        itemView.task_description.text = word.description
+    fun bind(association: Association) {
+        itemView.gender_title.text = association.gender
+        itemView.association.text = association.word1 + " - " + association.word2
+        //itemView.description.text = association.description
     }
 }

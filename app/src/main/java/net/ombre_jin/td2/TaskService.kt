@@ -18,5 +18,4 @@ interface TaskService {
     @PATCH("tasks/{id}")
     suspend fun updateTask(@Body task: Word): Response<Word>
 
-
 }
