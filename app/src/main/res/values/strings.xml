@@ -1,6 +1,10 @@
 <resources>
-    <string name="app_name">Jin-td2</string>
+    <string name="app_name">TD4 en cours - </string>
     <string name="task_header_title">Tasks</string>
     <string name="title">title</string>
     <string name="description">description</string>
+    <string name="user_avatar">user_avatar</string>
+    <string name="choisir_une_image">choose image</string>
+    <string name="prendre_une_photo">take picture</string>
+    <string name="valider">valider</string>
 </resources>
