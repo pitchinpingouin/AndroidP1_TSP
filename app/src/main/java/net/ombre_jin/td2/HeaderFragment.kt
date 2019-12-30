@@ -10,19 +10,15 @@ import kotlinx.coroutines.launch
 import kotlinx.android.synthetic.main.header_fragment.view.*
 
 class HeaderFragment : Fragment() {
-    private val coroutineScope = MainScope()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        //return inflater.inflate(R.layout.header_fragment, container)
+
         val view = inflater.inflate(R.layout.header_fragment, container)
-        coroutineScope.launch {
-            val name: String? = API.userService.getInfo().body()?.firstname
-            if(name != null) view.user_name.text = name
-        }
+
         return view
     }
 }

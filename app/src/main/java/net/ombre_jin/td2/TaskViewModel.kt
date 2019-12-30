@@ -1,11 +1,11 @@
 package net.ombre_jin.td2
 
-import layout.Task
+import layout.Word
 
 object TaskViewModel {
-    public val tasks = mutableListOf(
-        Task(id = 1, title = "Task 1", description = "description 1"),
-        Task(id = 2, title = "Task 2", description = "descr 2"),
-        Task(id = 3, title = "Task 3", description = "Je suis une autre description")
+    public val associations = mutableListOf(
+        Word(id = 1, word = "Task 1", description = "description 1"),
+        Word(id = 2, word = "Task 2", description = "descr 2"),
+        Word(id = 3, word = "Task 3", description = "Je suis une autre description")
     )
 }

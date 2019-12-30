@@ -7,8 +7,8 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 
 
 object API {
-    private const val BASE_URL = "https://android-tasks-api.herokuapp.com/api/"
-    private const val TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo3MCwiZXhwIjoxNjA4Mzg0NDk2fQ.0cJr9k_b6W3xHd0Dyh8q43yxVL7wdv77x9sLuIVfRFE"
+    private const val BASE_URL = "http://api.wordnik.com/v4/words.json/randomWord?api_key="
+    private const val TOKEN = "nx3a57o9wakw0hk2n9yydks0zzw6a7ndjyw9r4hdcz4b6ctrh"
 
     private val moshi = Moshi.Builder().build()
 
@@ -29,7 +29,6 @@ object API {
         .addConverterFactory(MoshiConverterFactory.create(moshi))
         .build()
 
-    val userService: UserService by lazy { retrofit.create(UserService::class.java)}
     val taskService: TaskService by lazy { retrofit.create(TaskService::class.java)}
 }
 

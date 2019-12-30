@@ -5,11 +5,11 @@ import android.os.Parcel
 import android.os.Parcelable
 import com.squareup.moshi.Json
 
-data class Task(
+data class Word(
     @field:Json(name = "id")
     var id: Int,
-    @field:Json(name = "title")
-    var title: String,
+    @field:Json(name = "word")
+    var word: String,
     @field:Json(name = "description")
     var description: String? = "") : Parcelable
 {
@@ -17,11 +17,12 @@ data class Task(
      ) : this(
          parcel.readInt(),
          parcel.readString(),
-         parcel.readString())
+         parcel.readString()
+         )
 
      override fun writeToParcel(parcel: Parcel, flags: Int) {
          parcel.writeInt(id)
-         parcel.writeString(title)
+         parcel.writeString(word)
          parcel.writeString(description)
      }
 
@@ -29,12 +30,12 @@ data class Task(
          return 0
      }
 
-     companion object CREATOR : Parcelable.Creator<Task> {
-         override fun createFromParcel(parcel: Parcel): Task {
-             return Task(parcel)
+     companion object CREATOR : Parcelable.Creator<Word> {
+         override fun createFromParcel(parcel: Parcel): Word {
+             return Word(parcel)
          }
 
-         override fun newArray(size: Int): Array<Task?> {
+         override fun newArray(size: Int): Array<Word?> {
              return arrayOfNulls(size)
          }
      }

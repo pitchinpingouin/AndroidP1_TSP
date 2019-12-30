@@ -7,8 +7,8 @@ import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
-import layout.Task
-import net.ombre_jin.td2.TaskViewModel.tasks
+import layout.Word
+import net.ombre_jin.td2.TaskViewModel.associations
 
 class TaskFormActivity : AppCompatActivity() {
 
@@ -19,7 +19,7 @@ class TaskFormActivity : AppCompatActivity() {
         setContentView(R.layout.activity_task_form)
         val createActivityIntent : Intent = Intent(this, MainActivity::class.java)
 
-        var taskReceived = intent.getParcelableExtra<Task>("taskToEdit")
+        var taskReceived = intent.getParcelableExtra<Word>("taskToEdit")
 
         val button = findViewById<Button>(R.id.back)
         var title = findViewById<EditText>(R.id.title)
@@ -27,16 +27,16 @@ class TaskFormActivity : AppCompatActivity() {
 
 
         if(taskReceived != null){
-            title.setText(taskReceived.title)
+            title.setText(taskReceived.word)
             description.setText(taskReceived.description)
         }
 
         button.setOnClickListener{
 
-            if(title.text.toString() != ""){
+            /*if(title.text.toString() != ""){
                 if(taskReceived != null){
                     if (taskReceived.id - 1 < tasks.size) {
-                        tasks[taskReceived.id - 1].title = title.text.toString()
+                        tasks[taskReceived.id - 1].word = title.text.toString()
                         tasks[taskReceived.id - 1].description = description.text.toString()
                     }
                 }
@@ -44,11 +44,11 @@ class TaskFormActivity : AppCompatActivity() {
                     //createActivityIntent.putExtra("newTask", Task(tasks.size, title.text.toString(), description.text.toString()))
                     //tasks.add( Task(tasks.size, title.text.toString(), description.text.toString()))
 
-                    coroutineScope.launch {
-                        API.taskService.createTask(Task(tasks.size, title.text.toString(), description.text.toString()))
-                    }
+                    //coroutineScope.launch {
+                    //    API.taskService.createTask(Task(tasks.size, title.text.toString(), description.text.toString()))
+                    //}
                 }
-            }
+            }*/
             startActivity(createActivityIntent)
         }
     }
