@@ -7,12 +7,10 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_task.view.*
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.launch
 import layout.Association
-import layout.Word
 
-class TasksAdapter(private val associations: MutableList<Association>) : RecyclerView.Adapter<TaskViewHolder>()
+
+class AssociationsAdapter(private val associations: MutableList<Association>) : RecyclerView.Adapter<AssociationViewHolder>()
 {
     lateinit var context : Context
 
@@ -27,26 +25,25 @@ class TasksAdapter(private val associations: MutableList<Association>) : Recycle
     private fun onEditClickListener(association : Association) {
 
         val createActivityIntent = Intent(context, AssociationFormActivity::class.java)
-        createActivityIntent.putExtra("associationToEdit", Association(association.id, association.gender, association.word1, association.word2, association.description))
+        createActivityIntent.putExtra("AssociationToEdit", Association(association.id, association.gender, association.word1, association.word2, association.description))
 
         startActivity(context, createActivityIntent, null)
         notifyDataSetChanged()
     }
 
-    override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: AssociationViewHolder, position: Int) {
         holder.bind(associations[position])
 
-        holder.itemView.task_delete.setOnClickListener{
+        holder.itemView.association_delete.setOnClickListener{
             onDeleteClickListener(associations[position])
         }
-        holder.itemView.task_edit.setOnClickListener {
+        holder.itemView.association_edit.setOnClickListener {
             onEditClickListener(associations[position])
         }
-
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AssociationViewHolder {
         context = parent.context
-        return TaskViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_task, parent, false))
+        return AssociationViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_task, parent, false))
     }
 }

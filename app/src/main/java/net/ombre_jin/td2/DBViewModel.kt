@@ -12,14 +12,18 @@ object DBViewModel {
     public val genders = mutableListOf(
         "Movie",
         "Theater",
+        "Advertising",
         "BD & Comics",
         "Video Game",
         "Board Game",
         "Sport",
         "Product",
-        "Musical",
+        "Music",
         "Novel",
         "Poem",
-        "Architecture"
+        "Sculpture & Art",
+        "TV Show",
+        "App",
+        "Tale"
     )
 }

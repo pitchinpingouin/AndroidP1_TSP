@@ -7,15 +7,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.tasks_fragment.view.*
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.cancel
-import layout.Association
+import net.ombre_jin.td2.DBViewModel.associations
 
-class TasksFragment : Fragment() {
+class AssociationsFragment : Fragment() {
 
-    private val coroutineScope = MainScope()
-    private val associations = mutableListOf<Association>()
-    private val taskAdapter = TasksAdapter(associations)
+    //private val coroutineScope = MainScope()
+    //private val associations = mutableListOf<Association>()
+    private val taskAdapter = AssociationsAdapter(associations)
 
 
     override fun onCreateView(
@@ -26,11 +24,12 @@ class TasksFragment : Fragment() {
 
         val adapter = taskAdapter
         val view = inflater.inflate(R.layout.tasks_fragment, container, false)
-        view.tasks_recycler_view.adapter = adapter
-        view.tasks_recycler_view.layoutManager = LinearLayoutManager(context)
+        view.associations_recycler_view.adapter = adapter
+        view.associations_recycler_view.layoutManager = LinearLayoutManager(context)
         return view
     }
 
+    /*
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -41,7 +40,7 @@ class TasksFragment : Fragment() {
     }
 
     override fun onDestroy() {
-        coroutineScope.cancel()
+        //coroutineScope.cancel()
         super.onDestroy()
-    }
+    } */
 }

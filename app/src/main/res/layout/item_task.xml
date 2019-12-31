@@ -20,13 +20,13 @@
 
 
     <Button
-        android:id="@+id/task_edit"
+        android:id="@+id/association_edit"
         android:layout_width="55dp"
         android:layout_height="wrap_content"
         android:text="Edit" />
 
     <Button
-        android:id="@+id/task_delete"
+        android:id="@+id/association_delete"
         android:layout_width="46dp"
         android:layout_height="wrap_content"
 

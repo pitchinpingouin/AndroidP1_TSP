@@ -11,10 +11,10 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_association_form.*
-import kotlinx.coroutines.MainScope
+import kotlinx.android.synthetic.main.item_task.*
 import kotlinx.io.IOException
 import layout.Association
-import layout.Word
+import net.ombre_jin.td2.DBViewModel.associations
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -34,40 +34,27 @@ class AssociationFormActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_association_form)
 
-        val mainActivityIntent = Intent(this, MainActivity::class.java)
+        val recyclerViewActivityIntent = Intent(this, RecyclerViewActivity::class.java)
         val associationReceived = intent.getParcelableExtra<Association>("AssociationToEdit")
 
-        val backButton = findViewById<Button>(R.id.back)
-        val notesImage = findViewById<ImageView>(R.id.notes_image)
-
-        val gender_title = findViewById<TextView>(R.id.gender_title)
-        val association_title = findViewById<TextView>(R.id.association)
-        val description = findViewById<EditText>(R.id.description)
-
         if (associationReceived != null) {
-            gender_title.text = (associationReceived.gender)
-            association_title.text = associationReceived.word1 + " - " + associationReceived.word2
-            description.setText(associationReceived.description)
+            //Toast.makeText(this, "Association received !", Toast.LENGTH_SHORT).show()
+            association_gender_title_edit.text = (associationReceived.gender)
+            association_words_edit.text = associationReceived.word1 + " - " + associationReceived.word2
+            description_edit.setText(associationReceived.description)
         }
 
-        notesImage.setOnClickListener {
+        notes_image.setOnClickListener {
             askCameraPermissionAndOpenCamera()
         }
 
-        backButton.setOnClickListener {
+        back.setOnClickListener {
 
-            /*if(title.text.toString() != ""){
-                if(taskReceived != null){
-                    if (taskReceived.id - 1 < tasks.size) {
-                        tasks[taskReceived.id - 1].word = title.text.toString()
-                        tasks[taskReceived.id - 1].description = description.text.toString()
-                    }
-                }
-                else{
-                    //createActivityIntent.putExtra("newTask", Task(tasks.size, title.text.toString(), description.text.toString()))
-                }
-            }*/
-            startActivity(mainActivityIntent)
+            if(associationReceived != null){
+                associations[associationReceived.id].description = description_edit.text.toString()
+            }
+
+            startActivity(recyclerViewActivityIntent)
         }
     }
 
