@@ -7,10 +7,12 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.view.isVisible
+import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.activity_main.*
 import layout.Association
 import net.ombre_jin.td2.DBViewModel.associations
 import net.ombre_jin.td2.DBViewModel.genders
+import okhttp3.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -71,7 +73,46 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+
+
+        fun fetchJson(){
+            val request = Request.Builder().
+                url(API.BASE_URL_TEST).
+                build()
+
+            val client = OkHttpClient()
+
+            client.newCall(request).enqueue(object: Callback {
+                override fun onFailure(call: Call, e: java.io.IOException) {
+                    println("faileddd")
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+                    println("suceededdddd!!!!")
+                    val body = response?.body?.string()
+                    println(body)
+
+                    val gson = GsonBuilder().create()
+
+                    val wordd = gson.fromJson(body,Wordd::class.java)
+
+                    runOnUiThread {
+                        word1.text = wordd.word
+                        word2.text = wordd.word
+                    }
+
+                }
+            })
+        }
+
+
+
+
+
+
         fun roll(){
+            fetchJson()
+
             if(!lock_gender.isVisible){
                 //choisir un genre parmi une liste prédéfinie
                 val randomIndex = (0..genders.size - 1).random()
@@ -80,22 +121,22 @@ class MainActivity : AppCompatActivity() {
 
             if(!lock_word1.isVisible){
                 //Faire des requetes http pour changer les mots
-                word1.text = "chocolategfhjkhhgf"
+                //word1.text = "chocolategfhjkhhgf"
+
+
             }
 
             if(!lock_word2.isVisible){
                 //Faire des requetes http pour changer les mots
-                word2.text = "milkfghjklkjhgfhjkj"
+                //word2.text = "milkfghjklkjhgfhjkj"
             }
         }
 
-        //val roll_button = findViewById<FloatingActionButton>(R.id.roll_button)
         roll_button.setOnClickListener {
             roll()
-            Toast.makeText(this, "Yey!", Toast.LENGTH_SHORT).show()
+            //Toast.makeText(this, "Yey!", Toast.LENGTH_SHORT).show()
         }
-
-        //roll()
     }
-
 }
+
+class Wordd(val id: Int, val word : String)

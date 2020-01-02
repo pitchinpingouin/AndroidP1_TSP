@@ -16,6 +16,7 @@ import kotlinx.io.IOException
 import layout.Association
 import net.ombre_jin.td2.DBViewModel.associations
 import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import java.io.File
@@ -149,7 +150,7 @@ class AssociationFormActivity : AppCompatActivity() {
             e.printStackTrace()
         }
 
-        val body = RequestBody.create(MediaType.parse("image/png"), f)
+        val body = RequestBody.create("image/png".toMediaTypeOrNull(), f)
         return MultipartBody.Part.createFormData("avatar", f.path ,body)
     }
 }
