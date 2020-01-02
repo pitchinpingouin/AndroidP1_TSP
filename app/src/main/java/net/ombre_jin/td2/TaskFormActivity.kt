@@ -35,17 +35,17 @@ class TaskFormActivity : AppCompatActivity() {
 
             if(title.text.toString() != ""){
                 if(taskReceived != null){
-                    if (taskReceived.id - 1 < tasks.size) {
+                /*    if (taskReceived.id - 1 < tasks.size) {
                         tasks[taskReceived.id - 1].title = title.text.toString()
                         tasks[taskReceived.id - 1].description = description.text.toString()
-                    }
+                    }*/
                 }
                 else{
                     //createActivityIntent.putExtra("newTask", Task(tasks.size, title.text.toString(), description.text.toString()))
                     //tasks.add( Task(tasks.size, title.text.toString(), description.text.toString()))
 
                     coroutineScope.launch {
-                        API.taskService.createTask(Task(tasks.size, title.text.toString(), description.text.toString()))
+                        API.taskService.createTask(Task(/*tasks.size*/title.text.toString(), title.text.toString(), description.text.toString()))
                     }
                 }
             }

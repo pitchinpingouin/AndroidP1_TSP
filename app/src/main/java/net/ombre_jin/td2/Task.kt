@@ -7,7 +7,7 @@ import com.squareup.moshi.Json
 
 data class Task(
     @field:Json(name = "id")
-    var id: Int,
+    var id: String,
     @field:Json(name = "title")
     var title: String,
     @field:Json(name = "description")
@@ -15,12 +15,12 @@ data class Task(
 {
      constructor(parcel: Parcel
      ) : this(
-         parcel.readInt(),
+         parcel.readString(),
          parcel.readString(),
          parcel.readString())
 
      override fun writeToParcel(parcel: Parcel, flags: Int) {
-         parcel.writeInt(id)
+         parcel.writeString(id)
          parcel.writeString(title)
          parcel.writeString(description)
      }

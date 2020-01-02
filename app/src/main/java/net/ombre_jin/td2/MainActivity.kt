@@ -16,13 +16,15 @@ class MainActivity : AppCompatActivity() {
 
         val taskFormIntent = Intent(this, TaskFormActivity::class.java)
 
-
+        /*
         val newTask = intent.getParcelableExtra<Task>("newTask")
+
 
         if(newTask != null)
             if(newTask.id >= tasks.size){
                 tasks.add(newTask)
             }
+        */
 
         val button = findViewById<FloatingActionButton>(R.id.floating_action_button)
         button.setOnClickListener {

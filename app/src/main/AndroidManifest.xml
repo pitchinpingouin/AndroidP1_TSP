@@ -18,6 +18,7 @@
         <activity android:name=".UserInfoActivity">
         </activity>
         <activity android:name=".TaskFormActivity" />
+        <activity android:name=".TaskRepository" />
 
         <activity android:name=".MainActivity">
             <intent-filter>

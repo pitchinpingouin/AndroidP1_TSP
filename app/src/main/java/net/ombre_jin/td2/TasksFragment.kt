@@ -42,14 +42,13 @@ class TasksFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         // subscribe the fragment to task update
 
-        /*tasksRepository.getTasks().observe(this, Observer{
+        tasksRepository.getTasks().observe(this, Observer{
             if( it != null){
                 tasks.clear()
                 tasks.addAll(it)
                 taskAdapter.notifyDataSetChanged()
             }
-        })*/
-
+        })
 
         super.onCreate(savedInstanceState)
     }
