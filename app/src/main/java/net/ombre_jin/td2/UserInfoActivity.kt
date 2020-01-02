@@ -7,11 +7,14 @@ import android.graphics.Bitmap
 import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.Toast
+import android.widget.Toast.LENGTH_SHORT
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_user_info.*
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
 import kotlinx.io.IOException
 import okhttp3.MediaType
 import okhttp3.MultipartBody
@@ -33,6 +36,35 @@ class UserInfoActivity : AppCompatActivity() {
         take_picture_button.setOnClickListener {
             askCameraPermissionAndOpenCamera()
         }
+        storage_image_button.setOnClickListener{
+            askStoragePermissionAndOpenGallery()
+        }
+    }
+
+    private fun askStoragePermissionAndOpenGallery(){
+        Toast.makeText(this, "not implemented yet !", LENGTH_SHORT)
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                // Show an explanation to the user *asynchronously* -- don't block
+                // this thread waiting for the user's response! After the user
+                // sees the explanation, try again to request the permission.
+
+               ////// ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), READ_EXTERNAL_STORAGE_PERMISSION_CODE )
+            } else {
+                // No explanation needed, we can request the permission.
+               ////// ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), READ_EXTERNAL_STORAGE_PERMISSION_CODE )
+                // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
+                // app-defined int constant. The callback method gets the
+                // result of the request.
+            }
+        } else {
+            openGallery()
+        }
+    }
+
+    private fun openGallery(){
+        //val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        //startActivityForResult(cameraIntent, CAMERA_REQUEST_CODE)
     }
 
     private fun askCameraPermissionAndOpenCamera() {
@@ -86,6 +118,11 @@ class UserInfoActivity : AppCompatActivity() {
         if(imageBody == null) return
 
         // Plus tard : Envoie de l'avatar au serveur
+        if(imageBody == null) return
+        MainScope().launch {
+            API.userService.updateAvatar(imageBody)
+        }
+
     }
 
     // Vous pouvez ignorer cette fonction...
@@ -102,10 +139,10 @@ class UserInfoActivity : AppCompatActivity() {
             e.printStackTrace()
         } catch (e: IOException) {
             e.printStackTrace()
-
         }
 
         val body = RequestBody.create(MediaType.parse("image/png"), f)
+        Toast.makeText(this,"avatar updated", LENGTH_SHORT )
         return MultipartBody.Part.createFormData("avatar", f.path ,body)
     }
 

@@ -15,7 +15,12 @@ import android.content.Intent
 class HeaderFragment : Fragment() {
 
     override fun onResume() {
-        Glide.with(this).load("http://goo.gl/gEgYUd").fitCenter().circleCrop().into(user_avatar)
+        //Glide.with(this).load("http://goo.gl/gEgYUd").fitCenter().circleCrop().into(user_avatar)
+        MainScope().launch {
+            val url = API.userService.getInfo().body()?.avatar ?: "https://goo.gl/gEgYUd"
+            Glide.with(this@HeaderFragment).load(url).fitCenter().circleCrop().into(user_avatar)
+        }
+
         user_name.isClickable = true
         user_name.setOnClickListener {
             val selectAvatarIntent = Intent(activity?.baseContext, UserInfoActivity::class.java)
@@ -36,6 +41,7 @@ class HeaderFragment : Fragment() {
         val view = inflater.inflate(R.layout.header_fragment, container)
         coroutineScope.launch {
             val name: String? = API.userService.getInfo().body()?.firstname
+            //println(API.userService.getInfo().body())
             if(name != null) view.user_name.text = name
         }
         return view

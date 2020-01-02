@@ -7,4 +7,5 @@
     <string name="choisir_une_image">choose image</string>
     <string name="prendre_une_photo">take picture</string>
     <string name="valider">valider</string>
+    <string name="choose_from_storage">choose from storage</string>
 </resources>

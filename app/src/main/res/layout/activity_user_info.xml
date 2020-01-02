@@ -19,11 +19,11 @@
 
 
     <Button
-        android:id="@+id/upload_image_button"
+        android:id="@+id/storage_image_button"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/valider" />
+        android:text="@string/choose_from_storage" />
 
     <Button
         android:id="@+id/take_picture_button"
