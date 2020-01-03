@@ -7,10 +7,12 @@ import okhttp3.*
 
 
 object API {
-    private const val BASE_URL = "http://api.wordnik.com/v4/words.json/"
-    const val BASE_URL_TEST = "http://api.wordnik.com/v4/words.json/randomWord?hasDictionaryDef=true&includePartOfSpeech=noun&api_key=nx3a57o9wakw0hk2n9yydks0zzw6a7ndjyw9r4hdcz4b6ctrh"
-    const val BASE_URL_TEST2 = "https://api.letsbuildthatapp.com/youtube/home_feed"
-    const val BASE_URL_TEST3 = "http://api.icndb.com/jokes/random/1http://api.icndb.com/jokes/random/"
+    const val BASE_URL = "http://api.wordnik.com/v4/words.json/"
+    const val BASE_URL_TEST = "http://api.wordnik.com/v4/words.json/randomWord?hasDictionaryDef=true&includePartOfSpeech=noun&maxLength=9&api_key=nx3a57o9wakw0hk2n9yydks0zzw6a7ndjyw9r4hdcz4b6ctrh"
+    const val BASE_URL_TEST2 = "https://api.wordnik.com/v4/words.json/randomWords?hasDictionaryDef=true&includePartOfSpeech=noun&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=4&maxLength=11&limit=2&api_key=nx3a57o9wakw0hk2n9yydks0zzw6a7ndjyw9r4hdcz4b6ctrh"
+    const val URL_DEF = "/definitions?limit=1&includeRelated=false&sourceDictionaries=all&useCanonical=false&includeTags=false&api_key=nx3a57o9wakw0hk2n9yydks0zzw6a7ndjyw9r4hdcz4b6ctrh"
+
+
 
     private const val TOKEN = "nx3a57o9wakw0hk2n9yydks0zzw6a7ndjyw9r4hdcz4b6ctrh"
 

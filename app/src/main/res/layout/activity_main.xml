@@ -6,16 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <fragment
-        android:id="@+id/header_fragment"
-        android:name="net.ombre_jin.td2.HeaderFragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout="@layout/header_fragment" />
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/roll_button"
         android:layout_width="137dp"
@@ -101,9 +91,7 @@
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/word1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/header_fragment"
-        app:layout_constraintVertical_bias="0.911" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/see_list_button"
@@ -149,7 +137,7 @@
         app:layout_constraintTop_toTopOf="@+id/definition_text" />
 
     <Button
-        android:id="@+id/left_button_definition2"
+        android:id="@+id/right_button_definition"
         android:layout_width="49dp"
         android:layout_height="160dp"
         android:background="@color/colorPrimary"

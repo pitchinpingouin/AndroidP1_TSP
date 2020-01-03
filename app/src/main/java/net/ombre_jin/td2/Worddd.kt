@@ -5,7 +5,7 @@ import android.os.Parcel
 import android.os.Parcelable
 import com.squareup.moshi.Json
 
-data class Word(
+data class Worddd(
     @field:Json(name = "id")
     var id: Int,
     @field:Json(name = "word")
@@ -30,12 +30,12 @@ data class Word(
          return 0
      }
 
-     companion object CREATOR : Parcelable.Creator<Word> {
-         override fun createFromParcel(parcel: Parcel): Word {
-             return Word(parcel)
+     companion object CREATOR : Parcelable.Creator<Worddd> {
+         override fun createFromParcel(parcel: Parcel): Worddd {
+             return Worddd(parcel)
          }
 
-         override fun newArray(size: Int): Array<Word?> {
+         override fun newArray(size: Int): Array<Worddd?> {
              return arrayOfNulls(size)
          }
      }

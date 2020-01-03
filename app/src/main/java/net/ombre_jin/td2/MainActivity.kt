@@ -13,6 +13,7 @@ import layout.Association
 import net.ombre_jin.td2.DBViewModel.associations
 import net.ombre_jin.td2.DBViewModel.genders
 import okhttp3.*
+import org.json.JSONArray
 
 class MainActivity : AppCompatActivity() {
 
@@ -73,11 +74,9 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-
-
-        fun fetchJson(){
+        fun getDefJson( str: String){
             val request = Request.Builder().
-                url(API.BASE_URL_TEST).
+                url(API.BASE_URL + str + API.URL_DEF).
                 build()
 
             val client = OkHttpClient()
@@ -85,24 +84,56 @@ class MainActivity : AppCompatActivity() {
             client.newCall(request).enqueue(object: Callback {
                 override fun onFailure(call: Call, e: java.io.IOException) {
                     println("faileddd")
+                    println(e)
                 }
 
                 override fun onResponse(call: Call, response: Response) {
-                    println("suceededdddd!!!!")
                     val body = response?.body?.string()
-                    println(body)
+                    //val body = JSONArray(response.body?.string())
+                    val gson = GsonBuilder().create()
+
+                    val defs = gson.fromJson(body, Array<Definition>::class.java)
+
+                    runOnUiThread {
+                        definition_text.text = defs[0].text
+                    }
+                }
+
+            })
+
+        }
+
+        fun fetchJson(){
+            val request = Request.Builder().
+                url(API.BASE_URL_TEST2).
+                build()
+
+            val client = OkHttpClient()
+
+            client.newCall(request).enqueue(object: Callback {
+                override fun onFailure(call: Call, e: java.io.IOException) {
+                    println("faileddd")
+                    println(e)
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+                    val body = response?.body?.string()
 
                     val gson = GsonBuilder().create()
 
-                    val wordd = gson.fromJson(body,Wordd::class.java)
+                    val wordd = gson.fromJson(body, Array<Word>::class.java)
+                    //val wordd = gson.fromJson(body, Word::class.java)
 
                     runOnUiThread {
-                        word1.text = wordd.word
-                        word2.text = wordd.word
-                    }
+                        word1.text = wordd[0].word
+                        word2.text = wordd[1].word
 
+
+                    }
                 }
+
             })
+
         }
 
 
@@ -132,6 +163,18 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        left_button_definition.setOnClickListener{
+            if(word1.text != null){
+                getDefJson(word1.text.toString())
+            }
+        }
+
+        right_button_definition.setOnClickListener{
+            if(word2.text != null ){
+                getDefJson(word1.text.toString())
+            }
+        }
+
         roll_button.setOnClickListener {
             roll()
             //Toast.makeText(this, "Yey!", Toast.LENGTH_SHORT).show()
@@ -139,4 +182,7 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
-class Wordd(val id: Int, val word : String)
+class Word(val id: Int, val word : String)
+class Definition(val id: Int, val text : String)
+class Words(val list: List<Word>)
+
