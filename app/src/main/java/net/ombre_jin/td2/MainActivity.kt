@@ -13,7 +13,6 @@ import layout.Association
 import net.ombre_jin.td2.DBViewModel.associations
 import net.ombre_jin.td2.DBViewModel.genders
 import okhttp3.*
-import org.json.JSONArray
 
 class MainActivity : AppCompatActivity() {
 
@@ -74,11 +73,13 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        fun getDefJson( str: String){
-            val request = Request.Builder().
-                url(API.BASE_URL + str + API.URL_DEF).
-                build()
 
+
+        fun getDefWithJson(str: String){
+            val request = Request.Builder().
+                url(API.BASE_URL_WORD_HTTPS + str + API.URL_DEF).
+                build()
+            println(API.BASE_URL_WORD_HTTPS + str + API.URL_DEF)
             val client = OkHttpClient()
 
             client.newCall(request).enqueue(object: Callback {
@@ -89,100 +90,89 @@ class MainActivity : AppCompatActivity() {
 
                 override fun onResponse(call: Call, response: Response) {
                     val body = response?.body?.string()
-                    //val body = JSONArray(response.body?.string())
-                    val gson = GsonBuilder().create()
+                    if(body != "{\"message\":\"API rate limit exceeded\"}") {
+                        val gson = GsonBuilder().create()
 
-                    val defs = gson.fromJson(body, Array<Definition>::class.java)
+                        val defs = gson.fromJson(body, Array<Definition>::class.java)
 
-                    runOnUiThread {
-                        definition_text.text = defs[0].text
+                        runOnUiThread {
+                            definition_text.text = defs[0].text
+                        }
                     }
                 }
-
             })
-
-        }
-
-        fun fetchJson(){
-            val request = Request.Builder().
-                url(API.BASE_URL_TEST2).
-                build()
-
-            val client = OkHttpClient()
-
-            client.newCall(request).enqueue(object: Callback {
-                override fun onFailure(call: Call, e: java.io.IOException) {
-                    println("faileddd")
-                    println(e)
-                }
-
-                override fun onResponse(call: Call, response: Response) {
-                    val body = response?.body?.string()
-
-                    val gson = GsonBuilder().create()
-
-                    val wordd = gson.fromJson(body, Array<Word>::class.java)
-                    //val wordd = gson.fromJson(body, Word::class.java)
-
-                    runOnUiThread {
-                        word1.text = wordd[0].word
-                        word2.text = wordd[1].word
-
-
-                    }
-                }
-
-            })
-
         }
 
 
 
 
+        fun rollWithJson(){
+            if(!(lock_word1.isVisible && lock_word2.isVisible)) {
+                val request = Request.Builder()
+                    .url(API.BASE_URL_WORDS_HTTPS + API.URL_WORDS)
+                    .build()
 
+                val client = OkHttpClient()
 
-        fun roll(){
-            fetchJson()
+                client.newCall(request).enqueue(object : Callback {
+                    override fun onFailure(call: Call, e: java.io.IOException) {
+                        println("faileddd")
+                        println(e)
+                    }
 
-            if(!lock_gender.isVisible){
-                //choisir un genre parmi une liste prédéfinie
-                val randomIndex = (0..genders.size - 1).random()
-                gender.text = genders[randomIndex]
-            }
+                    override fun onResponse(call: Call, response: Response) {
+                        val body = response?.body?.string()
+                        //println(body)
+                        if(body != "{\"message\":\"API rate limit exceeded\"}"){
+                            val gson = GsonBuilder().create()
 
-            if(!lock_word1.isVisible){
-                //Faire des requetes http pour changer les mots
-                //word1.text = "chocolategfhjkhhgf"
+                            val wordd = gson.fromJson(body, Array<Word>::class.java)
+                            if (wordd != null) {
+                                runOnUiThread {
 
+                                    if (!lock_word1.isVisible) {
+                                        //Faire des requetes http pour changer les mots
+                                        word1.text = wordd[0].word
 
-            }
+                                    }
 
-            if(!lock_word2.isVisible){
-                //Faire des requetes http pour changer les mots
-                //word2.text = "milkfghjklkjhgfhjkj"
+                                    if (!lock_word2.isVisible) {
+                                        //Faire des requetes http pour changer les mots
+                                        word2.text = wordd[1].word
+                                    }
+                                }
+                            }
+                        }
+                    }
+                })
             }
         }
 
         left_button_definition.setOnClickListener{
             if(word1.text != null){
-                getDefJson(word1.text.toString())
+                getDefWithJson(word1.text.toString())
             }
         }
 
         right_button_definition.setOnClickListener{
             if(word2.text != null ){
-                getDefJson(word1.text.toString())
+                getDefWithJson(word2.text.toString())
             }
         }
 
         roll_button.setOnClickListener {
-            roll()
-            //Toast.makeText(this, "Yey!", Toast.LENGTH_SHORT).show()
+            rollWithJson()
+            if (!lock_gender.isVisible) {
+                //choisir un genre parmi une liste prédéfinie
+                val randomIndex = (0..genders.size - 1).random()
+                gender.text = genders[randomIndex]
+            }
         }
     }
 }
 
 class Word(val id: Int, val word : String)
 class Definition(val id: Int, val text : String)
-class Words(val list: List<Word>)
 
+
+//Toast.makeText(this, "Yey!", Toast.LENGTH_SHORT).show()
