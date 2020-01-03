@@ -96,7 +96,13 @@ class MainActivity : AppCompatActivity() {
                         val defs = gson.fromJson(body, Array<Definition>::class.java)
 
                         runOnUiThread {
-                            definition_text.text = defs[0].text
+                            if(defs.size < 2) {
+                                definition_text.text = defs[0].text
+                            }
+                            else
+                            {
+                                definition_text.text = defs[0].text + "\n OR \n" + defs[1].text
+                            }
                         }
                     }
                 }
