@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.words_fragment.*
 import layout.Association
 import net.ombre_jin.td2.DBViewModel.associations
 import net.ombre_jin.td2.DBViewModel.genders
