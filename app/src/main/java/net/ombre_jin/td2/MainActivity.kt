@@ -91,7 +91,11 @@ class MainActivity : AppCompatActivity() {
 
                 override fun onResponse(call: Call, response: Response) {
                     val body = response?.body?.string()
-                    if(body != "{\"message\":\"API rate limit exceeded\"}") {
+
+                    if(body == "{\"message\":\"API rate limit exceeded\"}"){
+
+                    }
+                    else {
                         val gson = GsonBuilder().create()
 
                         val defs = gson.fromJson(body, Array<Definition>::class.java)

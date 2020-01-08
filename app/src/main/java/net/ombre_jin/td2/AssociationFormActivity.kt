@@ -62,30 +62,16 @@ class AssociationFormActivity : AppCompatActivity() {
 
     private fun askCameraPermissionAndOpenCamera() {
         if (ContextCompat.checkSelfPermission(
-                this,
-                Manifest.permission.CAMERA
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(
-                    this,
-                    Manifest.permission.CAMERA
-                )
-            ) {
+                this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)) {
                 // Show an explanation to the user *asynchronously* -- don't block
                 // this thread waiting for the user's response! After the user
                 // sees the explanation, try again to request the permission.
-                ActivityCompat.requestPermissions(
-                    this,
-                    arrayOf(Manifest.permission.CAMERA),
-                    CAMERA_PERMISSION_CODE
-                )
+                //TODO: Explain to User why do we need his permission
+                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), CAMERA_PERMISSION_CODE)
             } else {
                 // No explanation needed, we can request the permission.
-                ActivityCompat.requestPermissions(
-                    this,
-                    arrayOf(Manifest.permission.CAMERA),
-                    CAMERA_PERMISSION_CODE
-                )
+                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), CAMERA_PERMISSION_CODE)
                 // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
                 // app-defined int constant. The callback method gets the
                 // result of the request.
@@ -132,9 +118,10 @@ class AssociationFormActivity : AppCompatActivity() {
         Glide.with(this).load(image).fitCenter().into(notes_image)
 
         if(imageBody == null) return
+
+        //TODO: Enregistrer l'img sur un serveur
     }
 
-    // Vous pouvez ignorer cette fonction...
     private fun imageToBody(image: Bitmap?): MultipartBody.Part? {
         val f = File(cacheDir, "tmpfile.jpg")
         f.createNewFile()
