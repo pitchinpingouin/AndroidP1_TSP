@@ -118,7 +118,7 @@ class UserInfoActivity : AppCompatActivity() {
         // Plus tard : Envoie de l'avatar au serveur
         if(imageBody == null) return
         MainScope().launch {
-            API.userService.updateAvatar(imageBody)
+            API.INSTANCE.userService.updateAvatar(imageBody)
         }
 
     }

@@ -55,7 +55,7 @@ class TasksFragment : Fragment() {
 
     override fun onResume() {
         coroutineScope.launch {
-            API.userService.getInfo()
+            API.INSTANCE.userService.getInfo()
         }
 
         //taskViewModel.loadTasks(this)

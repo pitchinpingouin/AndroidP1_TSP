@@ -29,7 +29,7 @@ class TasksAdapter(private val tasks: MutableList<Task>) : RecyclerView.Adapter<
         }*/
 
         coroutineScope.launch {
-            API.taskService.deleteTask(task.id.toString())
+            API.INSTANCE.taskService.deleteTask(task.id.toString())
         }
     }
 

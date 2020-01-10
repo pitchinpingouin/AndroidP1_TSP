@@ -17,7 +17,7 @@ class HeaderFragment : Fragment() {
     override fun onResume() {
         //Glide.with(this).load("http://goo.gl/gEgYUd").fitCenter().circleCrop().into(user_avatar)
         MainScope().launch {
-            val url = API.userService.getInfo().body()?.avatar ?: "https://goo.gl/gEgYUd"
+            val url = API.INSTANCE.userService.getInfo().body()?.avatar ?: "https://goo.gl/gEgYUd"
             //println(API.userService.getInfo().body())
             Glide.with(this@HeaderFragment).load(url).fitCenter().circleCrop().into(user_avatar)
         }
@@ -41,7 +41,7 @@ class HeaderFragment : Fragment() {
         //return inflater.inflate(R.layout.header_fragment, container)
         val view = inflater.inflate(R.layout.header_fragment, container)
         coroutineScope.launch {
-            val name: String? = API.userService.getInfo().body()?.firstname
+            val name: String? = API.INSTANCE.userService.getInfo().body()?.firstname
             //println(API.userService.getInfo().body())
             if(name != null) view.user_name.text = name
         }

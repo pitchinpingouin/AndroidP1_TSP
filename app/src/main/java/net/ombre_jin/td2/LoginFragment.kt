@@ -2,6 +2,7 @@ package net.ombre_jin.td2
 
 import android.os.Bundle
 import android.preference.PreferenceManager
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,7 +16,6 @@ import androidx.navigation.fragment.findNavController
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import net.ombre_jin.td2.databinding.FragmentLoginBinding
-import retrofit2.Response
 
 /**
  * A simple [Fragment] subclass.
@@ -51,7 +51,7 @@ class LoginFragment : Fragment() {
                     databinding.passwordText.text.toString()
                 )
                 // TODO : login
-                val tokenResponse = apiLogin(loginInfos)
+                apiLogin(loginInfos)
             }
         }
         return view
@@ -60,19 +60,21 @@ class LoginFragment : Fragment() {
     fun apiLogin(loginInfos: LoginForm): LiveData<TokenResponse?> {
 
         val tokenData = MutableLiveData<TokenResponse?>()
-        MainScope().launch {
-            var response: Response<TokenResponse> = API.userService.login(loginInfos)
 
-            // if the response is valid
+        MainScope().launch {
+            var response = API.INSTANCE.userService.login(loginInfos)
+
             if (response.isSuccessful)
             {
                 PreferenceManager.getDefaultSharedPreferences(context).edit {
-                    putString(SHARED_PREF_TOKEN_KEY, response?.body()?.token.toString())
+                    //TODO: putString(SHARED_PREF_TOKEN_KEY, response?.body()?.token)
                 }
+                findNavController().navigate(R.id.action_loginFragment_to_mainActivity)
                 tokenData.postValue(response.body())
             } else {
                 Toast.makeText(context, "Authentication failed", Toast.LENGTH_LONG).show()
             }
+
         }
         return tokenData
     }

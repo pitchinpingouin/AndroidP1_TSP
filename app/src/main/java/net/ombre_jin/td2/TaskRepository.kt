@@ -8,7 +8,7 @@ import kotlinx.coroutines.launch
 import layout.Task
 
 class TaskRepository {
-    private val tasksService = API.taskService
+    private val tasksService = API.INSTANCE.taskService
     private val coroutineScope = MainScope()
 
     fun getTasks(): LiveData<List<Task>?> {
