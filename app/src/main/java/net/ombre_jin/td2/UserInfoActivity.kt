@@ -115,8 +115,6 @@ class UserInfoActivity : AppCompatActivity() {
         // Afficher l'image
         Glide.with(this).load(image).fitCenter().into(current_avatar)
 
-        if(imageBody == null) return
-
         // Plus tard : Envoie de l'avatar au serveur
         if(imageBody == null) return
         MainScope().launch {

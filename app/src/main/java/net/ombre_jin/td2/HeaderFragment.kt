@@ -18,6 +18,7 @@ class HeaderFragment : Fragment() {
         //Glide.with(this).load("http://goo.gl/gEgYUd").fitCenter().circleCrop().into(user_avatar)
         MainScope().launch {
             val url = API.userService.getInfo().body()?.avatar ?: "https://goo.gl/gEgYUd"
+            //println(API.userService.getInfo().body())
             Glide.with(this@HeaderFragment).load(url).fitCenter().circleCrop().into(user_avatar)
         }
 
