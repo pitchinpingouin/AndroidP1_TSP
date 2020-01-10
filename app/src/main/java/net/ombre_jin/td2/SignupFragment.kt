@@ -18,5 +18,5 @@ import android.view.ViewGroup
  * create an instance of this fragment.
  */
 class SignupFragment : Fragment() {
-    
+
 }
