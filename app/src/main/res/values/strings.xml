@@ -1,11 +1,21 @@
 <resources>
     <string name="app_name">TD5 en cours - </string>
     <string name="task_header_title">Tasks</string>
-    <string name="title">title</string>
-    <string name="description">description</string>
-    <string name="user_avatar">user_avatar</string>
-    <string name="choisir_une_image">choose image</string>
-    <string name="prendre_une_photo">take picture</string>
-    <string name="valider">valider</string>
-    <string name="choose_from_storage">choose from storage</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="user_avatar">User avatar</string>
+    <string name="choisir_une_image">Choose image</string>
+    <string name="prendre_une_photo">Take picture</string>
+    <string name="valider">Validate</string>
+    <string name="choose_from_storage">Choose from storage</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="signup">Signup</string>
+    <string name="name">Name</string>
+    <string name="last_name">Last name</string>
+    <string name="first_name">First name</string>
+    <string name="login">Login</string>
 </resources>
