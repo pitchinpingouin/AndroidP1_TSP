@@ -16,6 +16,6 @@ interface UserService {
     @POST("users/login")
     suspend fun login(@Body user: LoginForm): Response<TokenResponse>
 
-    @POST("users/signup")
+    @POST("users/sign_up")
     suspend fun signup(@Body user: SignUpForm): Response<TokenResponse>
 }
