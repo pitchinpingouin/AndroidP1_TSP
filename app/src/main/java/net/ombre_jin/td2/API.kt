@@ -3,7 +3,6 @@ package net.ombre_jin.td2
 import android.content.Context
 import android.preference.PreferenceManager
 import com.squareup.moshi.Moshi
-import android.content.SharedPreferences
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -26,7 +25,7 @@ class API(val context: Context) {
         OkHttpClient.Builder()
             .addInterceptor { chain ->
                 val newRequest = chain.request().newBuilder()
-                    .addHeader("Authorization", "Bearer" + getToken())
+                    .addHeader("Authorization", "Bearer " + getToken())
                     .build()
                 chain.proceed(newRequest)
             }

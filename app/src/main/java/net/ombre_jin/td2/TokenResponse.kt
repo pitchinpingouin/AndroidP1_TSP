@@ -2,5 +2,5 @@ package net.ombre_jin.td2
 
 
 data class TokenResponse(
-    var token: TokenResponse
+    var token: String
 )
